@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    history
+{% endblock %}
+
+{% block main %}
+    <form action="/history" method="post">
+        <table class="table table-striped">
+        <thread>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Transated</th>
+                <th>Timestamp</th>
+                <tbody>
+                {% for transaction in transactions: %}
+                <tr>
+                    <td>{{ transaction.symbol }}</td>
+                    <td>{{ transaction.shares }}</td>
+                    <td>{{ transaction.price|usd }}</td>
+                    <td>{{ (transaction.price * transaction.shares) |usd }}</td>
+                    <td>{{ transaction.timestamp }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </tr>
+        </thread>
+        </table>
+
+
+
+
+{% endblock %}
